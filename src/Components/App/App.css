@@ -1,8 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap");
 
 .App {
-  text-align: center;
   margin-top: 20px;
+}
+
+.container {
+  text-align: center;
 }
 
 .App-header {
@@ -12,10 +15,23 @@
   font-weight: bold;
   font-family: "Tilt Prism", cursive;
   font-size: 100px;
+  margin-bottom: 80px;
 }
 
 .Bookshop {
-  margin-top: 400px;
+  margin-top: 600px;
+  display: block;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.App-footer {
+  margin-top: 500px;
   display: block;
   margin: 0 auto;
   width: 300px;
