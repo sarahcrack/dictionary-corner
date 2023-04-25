@@ -4,12 +4,12 @@ import Results from "../Results/Results";
 
 function Dictionary() {
   const [keyword, setKeyword] = useState("");
-  let [results, setResults] = useState(null);
+  let [results, setResults] = useState(null); // we know results will change so need to use useState
 
   function handleResponse(response) {
     // console.log(response.data[0]);
     // console.log(response.data[0].meanings[0].definitions[0].definition);
-    setResults(response.data[0]);
+    setResults(response.data[0]); // setResults is a function that updates the state of results - everytime we get a reault from the API we update the state of results
   }
 
   function handleKeywordChange(event) {
