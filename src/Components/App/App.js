@@ -12,10 +12,13 @@ function App() {
           <main>
             {" "}
             <h1>Welcome to Dictionary Corner</h1>
-            <Dictionary />
             <p>Here you can find all the words you need!</p>
             <img src={bookshop} className="Bookshop img-fluid" alt="bookshop" />
+            <Dictionary />
           </main>
+          <button type="button" class="btn btn-primary">
+            Primary
+          </button>
         </div>
         <footer className="App-footer">Coded by Sarah Crack</footer>
       </div>
