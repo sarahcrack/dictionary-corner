@@ -2,6 +2,7 @@ import React from "react";
 import Meaning from "../Meaning/Meaning";
 import Synonyms from "../Synonyms/Synonyms";
 import Phonetic from "../Phonetic/Phonetic";
+import "./Results.css";
 
 function Results(props) {
   if (props.results) {

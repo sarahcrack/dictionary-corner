@@ -22,6 +22,17 @@ function Dictionary() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
   }
+
+  // function getRandomWord() {
+  //   let apiUrl = "https://random-word-api.herokuapp.com/word";
+  //   axios.get(apiUrl).then(handleResponse);
+  // }
+
+  // function getWord(word) {
+  //   let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${word}`;
+  //   axios.get(apiUrl).then(handleResponse);
+  // }
+
   return (
     <div className="Dictionary">
       <section>
@@ -32,6 +43,16 @@ function Dictionary() {
             onChange={handleKeywordChange}
           />
         </form>
+        <div className="hint">
+          Suggested words: sunset, wine, yoga, plant...
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          // onClick={() => getRandomWord}
+        >
+          Lucky Dip
+        </button>
       </section>
       <Results results={results} />
     </div>
