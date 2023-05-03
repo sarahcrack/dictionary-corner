@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <header className="App-header">Dictionary Corner</header>
+        <header className="App-header">Dictionary Corner 📖</header>
         <div className="Dictionary-content">
           <main>
             {" "}
@@ -23,7 +23,7 @@ function App() {
               />
             </h2>
             <h3>Here you can find all the words you need!</h3>
-            <Dictionary />
+            <Dictionary defaultKeyword="welcome" />
           </main>
         </div>
         <footer className="App-footer">

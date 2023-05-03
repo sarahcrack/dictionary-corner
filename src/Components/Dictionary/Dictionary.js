@@ -3,9 +3,10 @@ import axios from "axios";
 import Results from "../Results/Results";
 import "./Dictionary.css";
 
-function Dictionary() {
-  const [keyword, setKeyword] = useState("");
-  let [results, setResults] = useState(null); // we know results will change so need to use useState
+function Dictionary(props) {
+  const [keyword, setKeyword] = useState(props.defaultKeyword);
+  const [results, setResults] = useState(null); // we know results will change so need to use useState
+  const [loaded, setLoaded] = useState(false); // to track if the page has loaded or not (we want to set a default keyword on page load)
 
   function handleResponse(response) {
     // console.log(response.data[0]);
@@ -13,14 +14,19 @@ function Dictionary() {
     setResults(response.data[0]); // setResults is a function that updates the state of results - everytime we get a reault from the API we update the state of results
   }
 
-  function handleKeywordChange(event) {
-    setKeyword(event.target.value);
-  }
   // documentation: https://dictionaryapi.dev/
-  function search(event) {
-    event.preventDefault();
+  function search() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleKeywordChange(event) {
+    setKeyword(event.target.value);
   }
 
   // function getRandomWord() {
@@ -33,30 +39,40 @@ function Dictionary() {
   //   axios.get(apiUrl).then(handleResponse);
   // }
 
-  return (
-    <div className="Dictionary">
-      <section>
-        <form onSubmit={search}>
-          <input
-            type="search"
-            autoFocus={true}
-            onChange={handleKeywordChange}
-          />
-        </form>
-        <div className="hint">
-          Suggested words: sunset, wine, yoga, plant...
-        </div>
-        <button
-          type="button"
-          class="btn btn-outline-secondary"
-          // onClick={() => getRandomWord}
-        >
-          Lucky Dip
-        </button>
-      </section>
-      <Results results={results} />
-    </div>
-  );
+  function load() {
+    setLoaded(true);
+    search();
+  }
+
+  if (loaded) {
+    return (
+      <div className="Dictionary">
+        <section>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="search"
+              autoFocus={true}
+              onChange={handleKeywordChange}
+            />
+          </form>
+          <div className="hint">
+            Suggested words: sunset, wine, yoga, home...
+          </div>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            // onClick={() => getRandomWord}
+          >
+            Lucky Dip
+          </button>
+        </section>
+        <Results results={results} />
+      </div>
+    );
+  } else {
+    load();
+    return "Loading...";
+  }
 }
 
 export default Dictionary;

@@ -1,0 +1,32 @@
+.Phonetic {
+  margin-bottom: 1rem;
+}
+
+.Phonetic a {
+  color: #000;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  margin-bottom: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #e6e6e6;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.Phonetic a:hover {
+  background-color: #d9d9d9;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+.Phonetic a:active {
+  background-color: #cccccc;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.6);
+}
+
+.Phonetic .phonetic-text {
+  opacity: 0.7;
+  font-weight: bold;
+}
