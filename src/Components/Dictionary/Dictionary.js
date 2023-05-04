@@ -70,6 +70,8 @@ function Dictionary(props) {
           <button
             type="button"
             class="btn btn-outline-secondary"
+            aria-label="Lucky Dip"
+            title="Surprise me!"
             onClick={() => getRandomWord()}
           >
             Lucky Dip
