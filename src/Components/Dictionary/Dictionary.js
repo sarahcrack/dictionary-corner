@@ -39,6 +39,15 @@ function Dictionary(props) {
   //   axios.get(apiUrl).then(handleResponse);
   // }
 
+  function getRandomWord() {
+    let apiUrl = "https://random-word-api.herokuapp.com/word";
+    axios.get(apiUrl).then((response) => {
+      let randomWord = response.data[0];
+      let dictionaryApiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${randomWord}`;
+      axios.get(dictionaryApiUrl).then(handleResponse);
+    });
+  }
+
   function load() {
     setLoaded(true);
     search();
@@ -61,7 +70,7 @@ function Dictionary(props) {
           <button
             type="button"
             class="btn btn-outline-secondary"
-            // onClick={() => getRandomWord}
+            onClick={() => getRandomWord()}
           >
             Lucky Dip
           </button>
