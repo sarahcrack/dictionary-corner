@@ -8,6 +8,7 @@ function Dictionary(props) {
   const [results, setResults] = useState(null); // we know results will change so need to use useState
   const [loaded, setLoaded] = useState(false); // to track if the page has loaded or not (we want to set a default keyword on page load)
 
+  // this function will handle the response from the API
   function handleResponse(response) {
     // console.log(response.data[0]);
     // console.log(response.data[0].meanings[0].definitions[0].definition);
@@ -15,30 +16,24 @@ function Dictionary(props) {
   }
 
   // documentation: https://dictionaryapi.dev/
+  // this function will search the dictionary api for the keyword
   function search() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
   }
 
+  // this function will be called when the user submits the search form
   function handleSubmit(event) {
     event.preventDefault();
     search();
   }
 
+  // this function will update the state of keyword everytime the user types in the search box
   function handleKeywordChange(event) {
     setKeyword(event.target.value);
   }
 
-  // function getRandomWord() {
-  //   let apiUrl = "https://random-word-api.herokuapp.com/word";
-  //   axios.get(apiUrl).then(handleResponse);
-  // }
-
-  // function getWord(word) {
-  //   let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${word}`;
-  //   axios.get(apiUrl).then(handleResponse);
-  // }
-
+  // this function will get a random word from the random-word-api and then use that word to search the dictionary api
   function getRandomWord() {
     let apiUrl = "https://random-word-api.herokuapp.com/word";
     axios.get(apiUrl).then((response) => {
@@ -48,6 +43,7 @@ function Dictionary(props) {
     });
   }
 
+  // this function will load the page and set the default keyword
   function load() {
     setLoaded(true);
     search();
