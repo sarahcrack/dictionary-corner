@@ -1,4 +1,5 @@
 import React from "react";
+import "./Meaning.css";
 
 function Meaning(props) {
   return (
@@ -10,17 +11,12 @@ function Meaning(props) {
         return (
           <div key={index}>
             {/* unique key is required for mapping */}
-            <p>
-              <strong>Definition:</strong>
-              {definition.definition}
-              <br />
-              {definition.example && (
-                <span>
-                  <strong>Example:</strong>
-                  <em>{definition.example}</em>
-                </span>
-              )}
-            </p>
+
+            <div className="definition">{definition.definition}</div>
+
+            {definition.example && (
+              <div className="example">"{definition.example}"</div>
+            )}
           </div>
         );
       })}

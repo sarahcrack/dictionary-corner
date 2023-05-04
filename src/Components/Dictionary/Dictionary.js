@@ -58,6 +58,7 @@ function Dictionary(props) {
               type="search"
               autoFocus={true}
               onChange={handleKeywordChange}
+              placeholder="What word would you like to look up? 🔍"
             />
           </form>
           <div className="hint">
