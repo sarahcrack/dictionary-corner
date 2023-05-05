@@ -5,6 +5,8 @@
 .App {
   margin-top: 20px;
   font-family: "Alice", serif;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .container {
@@ -60,7 +62,8 @@ h3 {
   width: 300px;
   font-family: monospace;
   color: grey;
-  font-size: 12px;
+  font-size: 15px;
+  margin-bottom: 20px;
 }
 
 .App-footer a {

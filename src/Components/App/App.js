@@ -4,6 +4,7 @@ import Dictionary from "../Dictionary/Dictionary";
 import bookshop from "../Images/bookshop.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function App() {
   return (
@@ -28,7 +29,14 @@ function App() {
         </div>
         <footer className="App-footer">
           Coded by
-          <a href="https://www.linkedin.com/in/sarah-crack"> Sarah Crack</a>
+          <a href="https://www.linkedin.com/in/sarah-crack"> Sarah Crack </a>
+          <a
+            href="https://github.com/sarahcrack"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FontAwesomeIcon icon={faGithub} style={{ color: "#ffdab9" }} />
+          </a>
         </footer>
       </div>
     </div>
