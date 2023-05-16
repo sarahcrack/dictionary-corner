@@ -1,14 +1,32 @@
 import React from "react";
+import { useState } from "react";
 import "./App.css";
 import Dictionary from "../Dictionary/Dictionary";
 import bookshop from "../Images/bookshop.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 function App() {
+  const [mode, setMode] = useState("light");
+
+  const toggleMode = () => {
+    setMode(mode === "light" ? "dark" : "light");
+  };
+
   return (
-    <div className="App">
+    <div className={`App ${mode === "dark" ? "dark-mode" : "light-mode"}`}>
+      <button
+        type="button"
+        className="btn btn-outline-secondary"
+        aria-label="Light/Dark Mode"
+        title="Light/Dark Mode"
+        onClick={toggleMode}
+      >
+        Light/Dark Mode
+      </button>
+
       <div className="container">
         <header className="App-header">Dictionary Corner 📖</header>
         <div className="Dictionary-content">
@@ -36,6 +54,13 @@ function App() {
             rel="noreferrer"
           >
             <FontAwesomeIcon icon={faGithub} style={{ color: "#ffdab9" }} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sarah-crack"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FontAwesomeIcon icon={faLinkedin} style={{ color: "#ffdab9" }} />
           </a>
         </footer>
       </div>

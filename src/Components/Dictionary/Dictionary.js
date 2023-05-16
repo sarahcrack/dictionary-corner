@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Results from "../Results/Results";
+import Photos from "../Photos/Photos";
 import "./Dictionary.css";
 
 function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
   const [results, setResults] = useState(null); // we know results will change so need to use useState
   const [loaded, setLoaded] = useState(false); // to track if the page has loaded or not (we want to set a default keyword on page load)
+  const [photos, setPhotos] = useState(null);
 
   // this function will handle the response from the API
   function handleResponse(response) {
@@ -15,11 +17,24 @@ function Dictionary(props) {
     setResults(response.data[0]); // setResults is a function that updates the state of results - everytime we get a reault from the API we update the state of results
   }
 
+  function handleSheCodesResponse(response) {
+    // console.log(response);
+    setPhotos(response.data.photos);
+  }
+
   // documentation: https://dictionaryapi.dev/
   // this function will search the dictionary api for the keyword
   function search() {
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
+    // const pexelsApiKey =
+    //   "Ldl7vvdW7ZF59f3fRm5rq5Jc9Z20hZNYiwIiZfaosM1d1etYHZVK7Y7F";
+    // let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=1`;
+    // let headers = { Authorization: `Bearer ${pexelsApiKey}` };
+    // axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
+    let sheCodesApiKey = "0f0e3e77b0eaata6o0ebb284b5b47f5a";
+    let sheCodesApiUrl = `https://api.shecodes.io/images/v1/search?query=${keyword}&key=${sheCodesApiKey}`;
+    axios.get(sheCodesApiUrl).then(handleSheCodesResponse);
   }
 
   // this function will be called when the user submits the search form
@@ -66,7 +81,7 @@ function Dictionary(props) {
           </div>
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            className="btn btn-outline-secondary"
             aria-label="Lucky Dip"
             title="Surprise me!"
             onClick={() => getRandomWord()}
@@ -75,6 +90,8 @@ function Dictionary(props) {
           </button>
         </section>
         <Results results={results} />
+
+        <Photos photos={photos} />
       </div>
     );
   } else {
