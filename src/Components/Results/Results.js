@@ -1,4 +1,3 @@
-import React from "react";
 import Meaning from "../Meaning/Meaning";
 import Synonyms from "../Synonyms/Synonyms";
 import Phonetic from "../Phonetic/Phonetic";

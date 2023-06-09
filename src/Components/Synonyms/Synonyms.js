@@ -1,4 +1,3 @@
-import React from "react";
 import "./Synonyms.css";
 
 function Synonyms(props) {

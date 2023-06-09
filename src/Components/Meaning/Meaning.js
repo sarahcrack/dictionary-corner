@@ -1,4 +1,3 @@
-import React from "react";
 import "./Meaning.css";
 
 function Meaning(props) {
