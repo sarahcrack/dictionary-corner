@@ -48,13 +48,25 @@ function Dictionary(props) {
     setKeyword(event.target.value);
   }
 
-  // this function will get a random word from the random-word-api and then use that word to search the dictionary api
+
+// this function will get a random word from the random word API
   function getRandomWord() {
-    let apiUrl = "https://random-word-api.herokuapp.com/word";
-    axios.get(apiUrl).then((response) => {
-      let randomWord = response.data[0];
-      let dictionaryApiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${randomWord}`;
-      axios.get(dictionaryApiUrl).then(handleResponse);
+    let apiUrl = "https://random-word-api.herokuapp.com/word"; // this is the API we are using to get a random word
+    axios.get(apiUrl).then((response) => { // this is the response from the API
+      let randomWord = response.data[0]; // this is the random word we get from the API
+      let dictionaryApiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en_US/${randomWord}`; // this is the API we are using to get the definition of the random word
+      axios
+        .get(dictionaryApiUrl) // this is the response from the API
+        .then((response) => { 
+          let wordData = response.data[0]; // this is the data we get from the API (the definition of the random word)
+          setResults(wordData); // setResults is a function that updates the state of results - everytime we get a reault from the API we update the state of results
+          let sheCodesApiKey = "0f0e3e77b0eaata6o0ebb284b5b47f5a";
+          let sheCodesApiUrl = `https://api.shecodes.io/images/v1/search?query=${randomWord}&key=${sheCodesApiKey}`; // this is the API we are using to get the photos of the random word
+          axios.get(sheCodesApiUrl).then(handleSheCodesResponse); // this is the response from the API (the photos of the random word)
+        })
+        .catch(() => { // if the word is not found in the dictionary API then we will call getRandomWord again to get another random word
+          getRandomWord(); // Call getRandomWord again if the word is not found
+        });
     });
   }
 
